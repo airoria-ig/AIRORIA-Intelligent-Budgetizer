@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIRORIA Intelligent Budgetizer</title>
+    <style>
+        :root {
+            --primary-dark: #0d433e;
+            --primary-medium: #1d6a62;
+            --accent-green: #2fa382;
+            --accent-light: #e8f5f1;
+            --gold-accent: #f5bc3f;
+            --text-dark: #1e292b;
+            --text-light: #5f7470;
+            --bg-light: #f7faf9;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--accent-green);
+        }
+
+        .nav-btn {
+            background-color: var(--primary-medium);
+            color: var(--white);
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(13, 67, 62, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 2rem; /* Reduced size from 3rem to 2rem */
+            color: var(--primary-dark);
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.2rem; /* Adjusted down slightly for balance */
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: linear-gradient(135deg, var(--primary-medium), var(--primary-dark));
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(13, 67, 62, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(13, 67, 62, 0.35);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            max-height: 600px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        /* Features Section */
+        .features {
+            background-color: var(--white);
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3.5rem auto;
+        }
+
+        .section-title h2 {
+            font-size: 1.8rem; /* Adjusted down slightly from 2.2rem */
+            color: var(--primary-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--bg-light);
+            padding: 2.5rem 1.8rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-light);
+            color: var(--accent-green);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.8rem;
+            font-size: 1.25rem;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Banner Section */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium));
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-top: 2rem;
+        }
+
+        .cta-banner h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-banner .download-btn {
+            background: var(--gold-accent);
+            color: var(--primary-dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 868px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 2rem 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero-image img {
+                max-height: 450px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <nav>
+            <div class="logo">
+                AIRORIA <span>Budgetizer</span>
+            </div>
+            <a href="https://github.com/airoria-ig/AIRORIA-Budget-Studio-/releases/download/Money_budget/AIRORIA.Intelligent.Budget.v2.0.apk" class="nav-btn">Get App</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>AIRORIA Intelligent Budgetizer</h1>
+            <div class="subtitle">Plan Smarter. Spend Wisely. Achieve More.</div>
+            <p>Take full control of your personal finances with an intuitive, all-in-one smart budget tracker designed to optimize your spending and accelerate your financial growth.</p>
+            <a href="https://github.com/airoria-ig/AIRORIA-Budget-Studio-/releases/download/Money_budget/AIRORIA.Intelligent.Budget.v2.0.apk" class="download-btn">
+                <span>Download v2.0 APK</span>
+            </a>
+        </div>
+        <div class="hero-image">
+            <img src="1000224335.png" alt="AIRORIA Intelligent Budgetizer Welcome Screen">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-title">
+            <h2>Designed for Financial Clarity</h2>
+            <p>Everything you need to master your money management, all in one intelligent app.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Smart Budget Planning</h3>
+                <p>Set custom monthly limits, organize categories, and structure your money with precision and ease.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💳</div>
+                <h3>Expense Tracking</h3>
+                <p>Keep continuous records of receipts, transactions, and daily card expenditures seamlessly.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Growth Insights</h3>
+                <p>Visualize your financial trajectories with intuitive progress charts and smart analytics.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-banner">
+        <h2>Ready to initialize your financial journey?</h2>
+        <p>Download AIRORIA Intelligent Budgetizer v2.0 today and start building wealth with intelligence.</p>
+        <a href="https://github.com/airoria-ig/AIRORIA-Budget-Studio-/releases/download/Money_budget/AIRORIA.Intelligent.Budget.v2.0.apk" class="download-btn">
+            Download App Now
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 AIRORIA Budget Studio. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
